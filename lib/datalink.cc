@@ -215,17 +215,17 @@ static const int kBaudRatesTable[] = {
 #define BAUD_RATES_TABLE_SIZE (sizeof(kBaudRatesTable) / sizeof(int))
 
 using namespace std;
-
+// DataLink(const char *fname, int baud, Link *_link, bool noDSRCheck, unsigned short verbose, const int cancellationFd);
 DataLink::DataLink(const char *fname,
                    int baud,
                    Link *link,
                    bool noDSRCheck,
                    unsigned short verbose,
                    const int cancellationFd)
-: devname(fname)
+: noDSRCheck_(noDSRCheck)
+, devname(fname)
 , requestedBaudRate_(baud)
 , link_(link)
-, noDSRCheck_(noDSRCheck)
 , verbose_(verbose)
 , cancellationFd_(cancellationFd) {
 
