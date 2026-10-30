@@ -1068,7 +1068,7 @@ int FTP::session(DeviceEndpoint &deviceEndpoint, RFSV &rfsv, RPCS &rpcs, rclip &
             continue;
         }
         if (!strcmp(argv[0], "setupinfo")) {
-            Enum<RFSV::errs> res;
+            //<RFSV::errs> rese;
             BufferStore db;
 
             if ((res = rpcs.configRead(0, db)) != RFSV::E_PSI_GEN_NONE) {

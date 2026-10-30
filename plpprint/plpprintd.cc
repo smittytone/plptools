@@ -711,14 +711,14 @@ convertPage(FILE *f, int page, bool last, BufferStore buf)
                 }
                 string text(buf.getString(ofs), tlen);
                 ofs += tlen;
-                int left = buf.getDWord(ofs);
-                int top = buf.getDWord(ofs+4);
-                int right = buf.getDWord(ofs+8);
-                int bottom = buf.getDWord(ofs+12);
-                int baseline = buf.getDWord(ofs+16);
+                left = buf.getDWord(ofs);
+                top = buf.getDWord(ofs+4);
+                right = buf.getDWord(ofs+8);
+                bottom = buf.getDWord(ofs+12);
+                unsigned long baseline = buf.getDWord(ofs+16);
                 unsigned char align = buf.getByte(ofs+20);
                 int amargin = buf.getDWord(ofs+21);
-                fprintf(f, "%% @%d: JText '%s' %d %ld %d %d %d %d %d\n", i,
+                fprintf(f, "%% @%d: JText '%s' %ld %ld %ld %ld %ld %d %d\n", i,
                         text.c_str(), left, bottom + boffset, top, right,
                         baseline, align, amargin);
                 ps_escape(text);
@@ -727,7 +727,7 @@ convertPage(FILE *f, int page, bool last, BufferStore buf)
                 else
                     left += amargin;
                 bottom -= ((bottom - top) / 4);
-                fprintf(f, "(%s) %d %ld %d %d %d T\n", text.c_str(),
+                fprintf(f, "(%s) %ld %ld %ld %ld %d T\n", text.c_str(),
                         left, bottom + boffset, top, right, align);
                 i = ofs + 25;
             }
@@ -1001,14 +1001,14 @@ main(int argc, char **argv)
             while (serviceLoop) {
                 wPrt = new wprt(skt);
                 if (wPrt) {
-                    Enum<RFSV::errs> ret;
-                    ret = wPrt->initPrinter();
-                    if (ret == RFSV::E_PSI_GEN_NONE)
+                    Enum<RFSV::errs> ret2;
+                    ret2 = wPrt->initPrinter();
+                    if (ret2 == RFSV::E_PSI_GEN_NONE)
                         service_loop();
                     else {
                         if (debug)
                             debuglog("plpprintd: could not connect: %s",
-                                     ret.toString().c_str());
+                                     ret2.toString().c_str());
                     }
                     delete wPrt;
                     sleep(1);
