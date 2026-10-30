@@ -113,7 +113,7 @@ SISFile::fillFrom(uint8_t* buf, off_t len)
     n = m_header.m_nfiles;
     m_fileRecords = new SISFileRecord[n];
     ix = m_header.m_filesPtr;
-    SisRC myrc = SIS_OK;
+    //SisRC myrc = SIS_OK;
     for (int i = 0; i < n; ++i)
         {
         if (ix >= len)
@@ -122,9 +122,9 @@ SISFile::fillFrom(uint8_t* buf, off_t len)
         if (rc != SIS_OK)
             {
             printf(_("Problem reading file record %d, rc = %d.\n"), i, rc);
-            if (rc == SIS_TRUNCATEDDATA)
-                myrc = rc;
-            else
+            if (!(rc == SIS_TRUNCATEDDATA))
+            //    myrc = rc;
+            //else
                 return rc;
             }
         }
