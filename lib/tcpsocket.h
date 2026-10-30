@@ -227,7 +227,7 @@ private:
     struct sockaddr m_HostAddr;
     struct sockaddr m_PeerAddr;
     int m_Socket;
-    int m_Port;
+    //int m_Port;
     bool m_Bound;
     int m_LastError;
     IOWatch *myWatch;
