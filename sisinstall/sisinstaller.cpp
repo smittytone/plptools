@@ -457,6 +457,8 @@ SISInstaller::run(SISFile* file, uint8_t* buf, off_t len, SISFile* parent)
                                 uninstallFirst = true;
                                 oldFile = sisFile;
                                 break;
+                        default:
+                            // NOP
                         }
                 curr = curr->m_next;
                 }

@@ -879,6 +879,8 @@ service_loop()
                         spoolOpen = false;
                     }
                     break;
+                default:
+                    // NOP
             }
         }
         free(jname);
