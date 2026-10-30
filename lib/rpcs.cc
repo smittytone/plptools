@@ -315,7 +315,8 @@ Enum<RFSV::errs> RPCS::queryPrograms(processList &ret) {
     if (anySuccess && !ret.empty()) {
         for (processList::iterator i = ret.begin(); i != ret.end(); i++) {
             string cmdline;
-            if (getCmdLine(i->getProcId(), cmdline) == RFSV::E_PSI_GEN_NONE) {
+            const char* pid = i->getProcId().c_str();
+            if (getCmdLine(pid, cmdline) == RFSV::E_PSI_GEN_NONE) {
                 i->setArgs(cmdline + " " + i->getArgs());
             }
         }

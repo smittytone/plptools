@@ -84,7 +84,7 @@ public:
     * @returns The name and PID this instance in the format
     *          name.$pid .
     */
-    const char *getProcId();
+    std::string getProcId();
 
     /**
     * Assignment operator

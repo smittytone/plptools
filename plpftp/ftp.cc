@@ -206,7 +206,8 @@ static int stopPrograms(RPCS &rpcs, const char *file) {
     time_t tstart = time(nullptr) + 5;
     while (!tmp.empty()) {
         for (processList::iterator i = tmp.begin(); i != tmp.end(); i++) {
-            rpcs.stopProgram(i->getProcId());
+            const char* pid = i->getProcId().c_str();
+            rpcs.stopProgram(pid);
         }
         usleep(100000);
         if (time(nullptr) > tstart) {
@@ -1246,7 +1247,8 @@ int FTP::session(DeviceEndpoint &deviceEndpoint, RFSV &rfsv, RPCS &rpcs, rclip &
                     processList::iterator j;
                     for (j = tmp.begin(); j != tmp.end(); j++) {
                         if (kpid == -1 || kpid == j->getPID()) {
-                            rpcs.stopProgram(j->getProcId());
+                            const char* pid = j->getProcId().c_str();
+                            rpcs.stopProgram(pid);
                             anykilled = true;
                         }
                     }
