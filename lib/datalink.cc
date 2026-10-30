@@ -133,7 +133,7 @@ static void *data_pump_thread(void *arg) {
 
             if (FD_ISSET(dataLink->outputDataReadyPipe_[0], &r_set)) {
                 uint8_t byte;
-                ssize_t n = read(dataLink->outputDataReadyPipe_[0], &byte, 1);
+                [[maybe_unused]] ssize_t n = read(dataLink->outputDataReadyPipe_[0], &byte, 1);
             }
 
             // We can write to the transport; write as much as we can.

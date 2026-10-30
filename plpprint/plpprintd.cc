@@ -156,7 +156,7 @@ init_fontmap() {
         char buf[1024];
         while (fgets(buf, sizeof(buf), f)) {
             char *bp = buf;
-            int ne;
+            //int ne;
             if ((p = strchr(buf, '#')))
                 *p = '\0';
             if ((p = strchr(buf, '\n')))
@@ -446,8 +446,8 @@ convertPage(FILE *f, int page, bool last, BufferStore buf)
                 }
                 string fname(buf.getString(ofs), namelen);
                 ofs += namelen;
-                int screenfont = buf.getByte(ofs);
-                int basesize = buf.getWord(ofs+1);
+                [[maybe_unused]] int screenfont = buf.getByte(ofs);
+                [[maybe_unused]] int basesize = buf.getWord(ofs+1);
                 unsigned long style = buf.getDWord(ofs+3);
                 bool italic = ((style & 1) != 0);
                 bool bold = ((style & 2) != 0);
