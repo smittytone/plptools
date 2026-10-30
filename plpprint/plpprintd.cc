@@ -762,7 +762,7 @@ static unsigned char fakePage[15] = {
     0x00, 0x00, 0xc6, 0x41, 0x00, 0x00, 0x00,
 };
 
-const
+//const
 static void
 service_loop()
 {
